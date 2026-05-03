@@ -3326,6 +3326,17 @@ define Device/wavlink_wl-wn573hx1
 endef
 TARGET_DEVICES += wavlink_wl-wn573hx1
 
+define Device/wavlink_wn531ax2
+  $(Device/dsa-migration)
+  DEVICE_VENDOR := Wavlink
+  DEVICE_MODEL := WN-531AX2
+  DEVICE_DTS_CONFIG := config@1
+  DEVICE_PACKAGES += kmod-mt7915-firmware kmod-usb3 -uboot-envtools
+  KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  IMAGE_SIZE := 15808k
+endef
+TARGET_DEVICES += wavlink_wn531ax2
+
 define Device/wevo_11acnas
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
